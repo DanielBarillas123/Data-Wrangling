@@ -8,11 +8,16 @@
    ```
    cd Data-Wrangling
    ```
-3. Install pandas and numpy (if needed)
+3. Upload data into repository
+      * [LA Crime Dataset](https://catalog.data.gov/dataset/crime-data-from-2020-to-present/resource/5eb6507e-fa82-4595-a604-023f8a326099)
+      * [Seattle Crime Dataset](https://catalog.data.gov/dataset/spd-crime-data-2008-present-c0edb)
+      * [NY Present Crime Dataset](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://catalog.data.gov/dataset/nypd-arrest-data-year-to-date&ved=2ahUKEwjfwuiGpqGRAxXpCnkGHXjNKSwQFnoECAwQAQ&usg=AOvVaw0IQDLlrkWfX8QdtBYrcURL)
+      * [NY Historical Crime Dataset](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://catalog.data.gov/dataset/nypd-arrests-data-historic&ved=2ahUKEwjYlOGSpqGRAxXAj4kEHQHUKPIQFnoECBgQAQ&usg=AOvVaw2GrmcKIT9HPgLQRiMVt-xJ)
+4. Install pandas and numpy (if needed)
    ```
    pip install pandas numpy
    ```
-4. Run the script run_pipeline.py
+5. Run the script run_pipeline.py
    ```
    python3 run_pipeline.py
    ```
