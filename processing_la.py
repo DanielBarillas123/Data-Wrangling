@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import nibrs_mapping
-from datetime import datetime
 
 #---------------------------------------
 # LOADING DATA
@@ -195,7 +194,7 @@ print("Finished mapping of NIBRS for data")
 print("Beginning cleaning of data...")
 # Make null value (0.0) np.nan for lat and lon
 clean_la_df.loc[:, ['LAT', 'LON']] = clean_la_df[['LAT', 'LON']].replace(0.0, np.nan)
-print(f"\t- Converted {(la_df['LAT'].count() - clean_la_df['LAT'].count()) + (la_df['LON'].count() - clean_la_df['LON'].count())} values converted to np.nan in latitude and longitude")
+print(f"\t- Converted {(la_df['LAT'].count() - clean_la_df['LAT'].count()) + (la_df['LON'].count() - clean_la_df['LON'].count())} values to np.nan in latitude and longitude")
 
 # Fix spacing between words for Location
 clean_la_df['LOCATION'] = clean_la_df['LOCATION'].str.strip().str.split().str.join(" ")
@@ -248,7 +247,7 @@ clean_la_df.drop(columns=['Report Time', 'OCC Date', 'OCC Time', 'AREA', 'Rpt Di
                            'Crm Cd Desc', 'Mocodes', 'Vict Age', 'Vict Sex', 'Vict Descent',
                           'Premis Cd', 'Premis Desc', 'Weapon Used Cd', 'Weapon Desc', 'Status',
                           'Status Desc', 'Crm Cd 1', 'Crm Cd 2', 'Crm Cd 3', 'Crm Cd 4', 'Cross Street'], inplace=True)
-print(f"\t- Dropped {num_columns - len(clean_la_df.columns)} columns")
+print(f"\t- Dropped {num_columns - len(clean_la_df.columns)} columns that aren't shared between data")
 
 # Rename columns for continuity between datasets
 clean_la_df.rename(columns={'DR_NO': 'Report Number'}, inplace=True)
@@ -259,7 +258,7 @@ clean_la_df.rename(columns={'LON': 'Longitude'}, inplace=True)
 clean_la_df.rename(columns={'Offense Category': 'NIBRS Category'}, inplace=True)
 clean_la_df.rename(columns={'NIBRS Offense Code Description': 'NIBRS Desc'}, inplace=True)
 clean_la_df.rename(columns={'NIBRS_offense_code': 'NIBRS Code'}, inplace=True)
-print(f"\t- Renamed columns for continuity")
+print(f"\t- Renamed columns for continuity when combining data")
 
 # Create column to identify city of crime
 clean_la_df['City'] = 'Los Angeles'
@@ -268,6 +267,7 @@ print(f"\t- Added column to identify city of crime")
 # Reorder the columns
 clean_la_df = clean_la_df[['City', 'Report Number', 'Report Date', 'NIBRS Code', 'NIBRS Desc', 'NIBRS Category', 'Reported Area',
                              'Reported Location', 'Latitude', 'Longitude']]
+print(f"\t- Reordered columns to be more organized when combining data")
 print("Finished filtering data")
 print("Finished processing of LA data")
 #---------------------------------------

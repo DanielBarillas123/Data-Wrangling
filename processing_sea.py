@@ -82,7 +82,7 @@ print("Beginning filtering data...")
 num_columns = len(clean_spd_df.columns)
 clean_spd_df.drop(columns=['Offense ID', 'Offense Date', 'NIBRS Group AB', 'NIBRS Crime Against Category', 'Offense Sub Category',
                            'Shooting Type Group', 'Beat', 'Precinct', 'Sector', 'Reporting Area', 'Report Time'], inplace=True)
-print(f"\t- Dropped {num_columns - len(clean_spd_df.columns)} columns")
+print(f"\t- Dropped {num_columns - len(clean_spd_df.columns)} columns that aren't shared between data")
 
 # Rename columns for continuity between datasets
 clean_spd_df.rename(columns={'Block Address': 'Reported Location'}, inplace=True)
@@ -90,7 +90,7 @@ clean_spd_df.rename(columns={'Neighborhood': 'Reported Area'}, inplace=True)
 clean_spd_df.rename(columns={'Offense Category': 'NIBRS Category'}, inplace=True)
 clean_spd_df.rename(columns={'NIBRS Offense Code Description': 'NIBRS Desc'}, inplace=True)
 clean_spd_df.rename(columns={'NIBRS_offense_code': 'NIBRS Code'}, inplace=True)
-print(f"\t- Renamed columns for continuity")
+print(f"\t- Renamed columns for continuity when combining data")
 
 # Create column to identify city of crime
 clean_spd_df['City'] = 'Seattle'
@@ -99,6 +99,7 @@ print(f"\t- Added column to identify city of crime")
 # Reorder the columns
 clean_spd_df = clean_spd_df[['City', 'Report Number', 'Report Date', 'NIBRS Code', 'NIBRS Desc', 'NIBRS Category', 'Reported Area',
                              'Reported Location', 'Latitude', 'Longitude']]
+print(f"\t- Reordered columns to be more organized when combining data")
 print("Finished filtering data")
 print("Finished processing of Seattle data")
 #---------------------------------------

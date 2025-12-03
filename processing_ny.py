@@ -726,7 +726,7 @@ print("Beginning filtering data...")
 num_columns = len(clean_combined_df.columns)
 clean_combined_df.drop(columns=['ARREST_BORO', 'PD_CD', 'PD_DESC', 'KY_CD', 'OFNS_DESC', 'LAW_CODE', 'LAW_CAT_CD', 'JURISDICTION_CODE', 'AGE_GROUP', 'PERP_SEX',
                                 'PERP_RACE', 'X_COORD_CD', 'Y_COORD_CD', 'Location', 'PD_DESC_NORM', 'PD_CD_NORM'], inplace=True)
-print(f"\t- Dropped {num_columns - len(clean_combined_df.columns)} columns")
+print(f"\t- Dropped {num_columns - len(clean_combined_df.columns)} columns that aren't shared between data")
 
 # Rename columns for continuity between datasets
 clean_combined_df.rename(columns={'ARREST_KEY': 'Report Number'}, inplace=True)
@@ -736,7 +736,7 @@ clean_combined_df.rename(columns={'Borough': 'Reported Area'}, inplace=True)
 clean_combined_df.rename(columns={'Offense Category': 'NIBRS Category'}, inplace=True)
 clean_combined_df.rename(columns={'NIBRS Offense Code Description': 'NIBRS Desc'}, inplace=True)
 clean_combined_df.rename(columns={'NIBRS_offense_code': 'NIBRS Code'}, inplace=True)
-print(f"\t- Renamed columns for continuity")
+print(f"\t- Renamed columns for continuity when combining data")
 
 # Create column to identify city of crime
 clean_combined_df['City'] = 'New York'
@@ -745,6 +745,7 @@ print(f"\t- Added column to identify city of crime")
 # Reorder the columns
 clean_combined_df = clean_combined_df[['City', 'Report Number', 'Report Date', 'NIBRS Code', 'NIBRS Desc', 'NIBRS Category', 'Reported Area',
                                        'Reported Location', 'Latitude', 'Longitude']]
+print(f"\t- Reordered columns to be more organized when combining data")
 print("Finished filtering data")
 print("Finished processing of NY data")
 #---------------------------------------
